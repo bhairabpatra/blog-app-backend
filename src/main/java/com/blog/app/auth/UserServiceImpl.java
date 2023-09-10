@@ -1,7 +1,10 @@
 package com.blog.app.auth;
 
+import com.blog.app.post.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -38,9 +41,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
-//    @Override
-//    public Boolean existsByEmail(String userEmail) {
-//        return userRepository.existsByEmail(userEmail);
-//    }
+    @Override
+    public User getUser(String email) {
+         User user = userRepository.findByEmail(email);
+        return user;
+    }
 }
