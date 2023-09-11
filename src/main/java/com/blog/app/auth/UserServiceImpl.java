@@ -1,9 +1,12 @@
 package com.blog.app.auth;
 
+import com.blog.app.exception.NotFoundException;
 import com.blog.app.post.Post;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,4 +49,33 @@ public class UserServiceImpl implements UserService {
          User user = userRepository.findByEmail(email);
         return user;
     }
+
+    @Override
+    public User getUserById(Long id) {
+        Optional<User> newUser = userRepository.findById(id);
+        if (!newUser.isPresent()) {
+            throw new NotFoundException("User not found for the provided ID : "+id);
+        }
+        return  newUser.get();
+    }
+
+    @Override
+    public List<User> getUsers() {
+        List<User> newUser = userRepository.findAll();
+        if(newUser.isEmpty()){
+            throw new NotFoundException("User Not Found");
+        }
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User editUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
 }

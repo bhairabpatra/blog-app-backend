@@ -33,7 +33,7 @@ public class SecurityConfig {
                             .requestMatchers("v1/api/createPost").permitAll()
                             .requestMatchers("api/v1/signUp").permitAll()
                             .requestMatchers("api/v1/signIn").permitAll()
-//                            .requestMatchers("v1/api/**").permitAll()
+                            .requestMatchers("api/v1/**").permitAll()
 //                            .requestMatchers("v1/api/profile").authenticated()
                             .anyRequest().authenticated());
             return http.build();

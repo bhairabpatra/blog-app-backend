@@ -3,21 +3,35 @@ package com.blog.app.payload;
 import java.util.Date;
 
 public class ErrorDetails {
-    private Date timestamp;
+    private Long timestamp;
     private String message;
     private String details;
+    private int status;
 
-    public ErrorDetails(Date timestamp, String message, String details) {
+
+    public ErrorDetails(Long timestamp, String message, int status) {
         this.timestamp = timestamp;
         this.message = message;
-        this.details = details;
+        this.status = status;
     }
 
-    public Date getTimestamp() {
+    public ErrorDetails() {
+
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -29,11 +43,4 @@ public class ErrorDetails {
         this.message = message;
     }
 
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
 }
