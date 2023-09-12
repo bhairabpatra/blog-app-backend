@@ -1,4 +1,5 @@
 package com.blog.app.exception;
+
 import com.blog.app.payload.ErrorDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +18,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ErrorDetails> handleResourceNotFoundException (NotFoundException ex) {
+    public ResponseEntity<ErrorDetails> handleResourceNotFoundException(NotFoundException ex) {
         ErrorDetails eObject = new ErrorDetails();
         eObject.setStatus(HttpStatus.NOT_FOUND.value());
         eObject.setMessage(ex.getMessage());
@@ -25,7 +27,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BlogApiException.class)
-    public ResponseEntity<ErrorDetails> handleBlogApiException (BlogApiException ex) {
+    public ResponseEntity<ErrorDetails> handleBlogApiException(BlogApiException ex) {
         ErrorDetails eObject = new ErrorDetails();
         eObject.setStatus(HttpStatus.NOT_FOUND.value());
         eObject.setMessage(ex.getMessage());
@@ -34,7 +36,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorDetails> handleGlobalException (Exception ex) {
+    public ResponseEntity<ErrorDetails> handleGlobalException(Exception ex) {
         ErrorDetails eObject = new ErrorDetails();
         eObject.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         eObject.setMessage(ex.getMessage());

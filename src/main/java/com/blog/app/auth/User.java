@@ -1,4 +1,5 @@
 package com.blog.app.auth;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -7,7 +8,9 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "user_table")
 public class User {
@@ -17,7 +20,7 @@ public class User {
     private Long Id;
 
     @NotEmpty(message = "This field cannot be empty")
-    @Size(min = 2 , message = "Please enter at least 2 characters for name")
+    @Size(min = 2, message = "Please enter at least 2 characters for name")
     private String name;
 
     @Email(message = "Please enter a valid email address")
@@ -25,7 +28,7 @@ public class User {
     private String email;
 
     @NotEmpty(message = "This field cannot be empty")
-    @Size(min = 10 , message = "Please enter at least 10 digit for phone number")
+    @Size(min = 10, message = "Please enter at least 10 digit for phone number")
     private String phone;
 
     @NotEmpty(message = "Please enter at least 5 characters for password")

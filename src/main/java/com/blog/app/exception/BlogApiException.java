@@ -1,6 +1,6 @@
 package com.blog.app.exception;
 
-public class BlogApiException extends RuntimeException{
+public class BlogApiException extends RuntimeException {
     public BlogApiException() {
     }
 
