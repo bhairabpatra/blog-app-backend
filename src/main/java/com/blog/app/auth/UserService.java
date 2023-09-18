@@ -25,11 +25,9 @@ public interface UserService {
     List<User> getUsers();
 
     // Edit user
-
     User editUser(User user);
 
     // Delete user
-
     void deleteUser(Long id);
 
 }

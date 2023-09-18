@@ -15,16 +15,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public PostCategory create(PostCategory postCategory) {
         return categoryRepository.save(postCategory);
-
-
-//        System.out.println(isCatExist);
-//        if (isCatExist) {
-//            return categoryRepository.save(postCategory);
-//        } else {
-//            System.out.println("Category already exist");
-//            return null;
-//        }
-
     }
 
 
@@ -35,9 +25,8 @@ public class CategoryServiceImpl implements CategoryService {
             categoryRepository.deleteById(id);
             return "post Deleted successfully";
         } else {
-            return "no such post Deleted successfully";
+            return "No Such Post Found";
         }
-
     }
 
     @Override

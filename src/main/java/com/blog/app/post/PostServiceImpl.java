@@ -1,4 +1,5 @@
 package com.blog.app.post;
+import com.blog.app.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -24,7 +25,7 @@ public class PostServiceImpl implements PostService {
     public List<Post> getPosts() {
         Optional<List<Post>> post = Optional.of(postRepository.findAll());
         if (!post.isPresent()) {
-            System.out.println("Post not found");
+           throw new NotFoundException("Post not found");
         }
         return post.get();
     }
@@ -33,7 +34,7 @@ public class PostServiceImpl implements PostService {
     public Post singlePost(Long id) {
         Optional<Post> post = postRepository.findById(id);
         if (!post.isPresent()) {
-            System.out.println("Product not found for the id");
+            throw new NotFoundException("Post not found for the provided ID : "+id);
         }
         return post.get();
     }
@@ -42,5 +43,4 @@ public class PostServiceImpl implements PostService {
     public void deletePost(Long id) {
         postRepository.deleteById(id);
     }
-
 }
