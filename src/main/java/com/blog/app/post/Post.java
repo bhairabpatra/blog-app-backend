@@ -1,5 +1,6 @@
 package com.blog.app.post;
 
+import com.blog.app.auth.User;
 import com.blog.app.category.PostCategory;
 import com.blog.app.coments.PostComments;
 import jakarta.persistence.*;
@@ -29,19 +30,17 @@ public class Post {
     private String longDescription;
     private String postImgUrl;
     private Long postLike;
+    private Long userId;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private PostCategory postCategory;
+    private String postCategory;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "comments_id")
     private List<PostComments> postComments = new ArrayList<>();
-//    private PostComments postComments;
 
     public Long getId() {
         return Id;
@@ -107,13 +106,6 @@ public class Post {
         this.updatedAt = updatedAt;
     }
 
-    public PostCategory getPostCategory() {
-        return postCategory;
-    }
-
-    public void setPostCategory(PostCategory postCategory) {
-        this.postCategory = postCategory;
-    }
 
     public List<PostComments> getPostComments() {
         return postComments;
@@ -123,13 +115,30 @@ public class Post {
         this.postComments = postComments;
     }
 
-    public Post(Long id, String postTitle, String sortDescription, String longDescription, String postImgUrl, Long postLike, LocalDateTime createdAt, LocalDateTime updatedAt, PostCategory postCategory, List<PostComments> postComments) {
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getPostCategory() {
+        return postCategory;
+    }
+
+    public void setPostCategory(String postCategory) {
+        this.postCategory = postCategory;
+    }
+
+    public Post(Long id, String postTitle, String sortDescription, String longDescription, String postImgUrl, Long postLike, Long userId, LocalDateTime createdAt, LocalDateTime updatedAt, String postCategory, List<PostComments> postComments) {
         Id = id;
         this.postTitle = postTitle;
         this.sortDescription = sortDescription;
         this.longDescription = longDescription;
         this.postImgUrl = postImgUrl;
         this.postLike = postLike;
+        this.userId = userId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.postCategory = postCategory;
