@@ -11,5 +11,7 @@ public interface PostService {
 
     public Post singlePost(Long id);
 
-    public void deletePost(Long id);
+    void deletePost(Long id);
+
+    List<Post> findByPostCategory(String catName);
 }

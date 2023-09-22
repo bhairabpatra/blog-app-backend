@@ -43,4 +43,13 @@ public class PostServiceImpl implements PostService {
     public void deletePost(Long id) {
         postRepository.deleteById(id);
     }
+
+    @Override
+    public List<Post> findByPostCategory(String catName) {
+        Optional<List<Post>> post = Optional.of(postRepository.findByPostCategory(catName));
+        if (!post.isPresent()) {
+            throw new NotFoundException("Post not found");
+        }
+        return post.get();
+    }
 }
